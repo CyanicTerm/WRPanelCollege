@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Client>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Lista klientów</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Client" asp-action="Create" class="btn btn-primary">
+                Dodaj nowego klienta
+            </a>
+        </div>
+    </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Imię</th>
+      <th scope="col">Nazwisko</th>
+      <th scope="col">Numer telefonu</th>
+      <th scope="col">Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach(var obj in Model)
+      {
+            <tr>
+            <td>@obj.FirstName</td>
+            <td>@obj.LastName</td>
+            <td>@obj.Phone</td>
+            <td>@obj.Email</td>
+            <td>
+                <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Client" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">Edytuj</a>
+                        <a asp-controller="Client" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">Usuń</a>
+                </div>
+            </td>
+        </tr> 
+      }
+  </tbody>
+</table>
