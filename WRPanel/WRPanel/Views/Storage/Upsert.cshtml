@@ -1,0 +1,67 @@
+﻿@model WRPanel.Models.ViewModels.StorageVM
+@{
+    ViewData["Title"] = "Upsert";
+}
+<form method="post" asp-action="Upsert">
+    <input asp-for="Storage.Id" hidden />
+    <div class=" pt-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">@(Model.Storage.Id!=0?"Edytuj":"Dodaj") przechowalnię</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Storage.StorageNum"></label>
+            <input asp-for="Storage.StorageNum" class="form-control" />
+            <span asp-validation-for="Storage.StorageNum" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Storage.PlateNum"></label>
+            <input asp-for="Storage.PlateNum" class="form-control" />
+            <span asp-validation-for="Storage.PlateNum" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Storage.Tire"></label>
+            <input asp-for="Storage.Tire" class="form-control" />
+            <span asp-validation-for="Storage.Tire" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Storage.TireNum"></label>
+            <input asp-for="Storage.TireNum" class="form-control" />
+            <span asp-validation-for="Storage.TireNum" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Storage.Rim"></label>
+            <input asp-for="Storage.Rim" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Storage.RimNum"></label>
+            <input asp-for="Storage.RimNum" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Storage.Description"></label>
+            <textarea asp-for="Storage.Description" rows="3" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Storage.ClientId"></label>
+            <select class="custom-select  " asp-for="Storage.ClientId" asp-items="@Model.ClientList">
+                <option  disabled selected>-- Wybierz numer klienta --</option>
+            </select>
+        </div>
+        @if (Model.Storage.Id!=0)
+       {
+            <button type="submit" class="btn btn-primary">Edytuj</button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-primary">Dodaj</button>
+        }
+
+        <a asp-controller="Storage" asp-action="Index" class="btn btn-secondary">Wróć do listy</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

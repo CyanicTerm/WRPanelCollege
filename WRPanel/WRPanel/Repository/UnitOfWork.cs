@@ -10,9 +10,11 @@ namespace WRPanel.Repository
         {
             _db = db;
             Client = new ClientRepository(_db);
+            Storage = new StorageRepository(_db);
 
         }
         public IClientRepository Client { get; private set; }
+        public IStorageRepository Storage { get; private set; }
         public void Save()
         {
             _db.SaveChanges();

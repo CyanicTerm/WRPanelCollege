@@ -1,0 +1,34 @@
+﻿<head>
+    <link rel="stylesheet" href="~/css/table.css/">
+</head>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Lista przechowalni</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Storage" asp-action="Upsert" class="btn btn-primary">
+                Dodaj nową przechowalnię
+            </a>
+        </div>
+    </div>
+</div>
+<table id="tblData" class="table">
+  <thead>
+    <tr>
+      <th scope="col">Przechowalnia nr</th>
+      <th scope="col">Numer rejestracyjny</th>
+      <th scope="col">Opona</th>
+      <th scope="col">Liczba Opon</th>
+      <th scope="col">Felga</th>
+      <th scope="col">Liczba Felg</th>
+      <th scope="col">Uwagi</th>
+      <th scope="col">Numer telefonu klienta</th>
+      <th></th>
+    </tr>
+  </thead>
+</table>
+
+@section Scripts{
+    <script src="~/js/storage.js"></script>
+}

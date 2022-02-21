@@ -11,5 +11,6 @@ namespace WRPanel.Data
         }
 
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Storage> Storages { get; set; }
     }
 }
