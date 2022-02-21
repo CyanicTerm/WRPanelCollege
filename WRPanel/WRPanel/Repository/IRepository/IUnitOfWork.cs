@@ -4,6 +4,7 @@
     {
         IClientRepository Client { get; }
         IStorageRepository Storage { get; }
+        IToDoRepository ToDo { get; }
         void Save();
     }
 }

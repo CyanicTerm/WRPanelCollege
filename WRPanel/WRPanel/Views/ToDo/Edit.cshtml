@@ -1,0 +1,38 @@
+﻿@model ToDo
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<form method="post">
+    <div class="broder pt-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edytuj zadanie</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="TaskName"></label>
+            <input asp-for="TaskName" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="IsImportant"></label>
+            <input asp-for="IsImportant" class="form-check" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="IsDone"></label>
+            <input asp-for="IsDone" class="form-check" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Edytuj</button>
+        <a asp-controller="ToDo" asp-action="Index" class="btn btn-secondary">Wróć do listy</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
