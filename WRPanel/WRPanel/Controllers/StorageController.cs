@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
 using WRPanel.Models;
 using WRPanel.Models.ViewModels;
 using WRPanel.Repository.IRepository;
+using WRPanel.Utility;
 
 namespace WRPanel.Controllers
 {
@@ -24,6 +26,7 @@ namespace WRPanel.Controllers
         }
 
         //Upsert - GET
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Manager)]
         public IActionResult Upsert(int? id)
         {
             StorageVM storageVM = new()
@@ -50,6 +53,7 @@ namespace WRPanel.Controllers
         //Upsert - POST
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Manager)]
         public IActionResult Upsert(StorageVM obj)
         {
             if (ModelState.IsValid)

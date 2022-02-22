@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using WRPanel.Models;
 using WRPanel.Repository.IRepository;
+using WRPanel.Utility;
 
 namespace WRPanel.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class ToDoController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

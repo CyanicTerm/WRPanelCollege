@@ -23,6 +23,7 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                             <div class="w-75 btn-group" role="group">
+                                
                                 <a href="/Storage/Upsert?id=${data}" class="btn btn-primary mx-2">Edytuj</a>
                                 <a onClick=Delete('/Storage/Delete/${data}') class="btn btn-danger mx-2">Usuń</a>
                             </div>
