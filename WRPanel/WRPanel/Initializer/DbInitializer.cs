@@ -41,40 +41,40 @@ namespace WRPanel.Initializer
 
             _userManager.CreateAsync(new ApplicationUser
             {
-                UserName = "admin@gmail.com",
-                Email = "admin@gmail.com",
+                UserName = "admin@test.com",
+                Email = "admin@test.com",
                 Name = "Admin",
 
             },"Admin123*").GetAwaiter().GetResult();
 
             _userManager.CreateAsync(new ApplicationUser
             {
-                UserName = "manager@gmail.com",
-                Email = "manager@gmail.com",
+                UserName = "manager@test.com",
+                Email = "manager@test.com",
                 Name = "Manager",
 
             }, "Admin123*").GetAwaiter().GetResult();
 
             _userManager.CreateAsync(new ApplicationUser
             {
-                UserName = "owner@gmail.com",
-                Email = "owner@gmail.com",
+                UserName = "owner@test.com",
+                Email = "owner@test.com",
                 Name = "Owner",
 
             }, "Admin123*").GetAwaiter().GetResult();
 
             _userManager.CreateAsync(new ApplicationUser
             {
-                UserName = "employee@gmail.com",
-                Email = "employee@gmail.com",
+                UserName = "employee@test.com",
+                Email = "employee@test.com",
                 Name = "Employee",
 
             }, "Admin123*").GetAwaiter().GetResult();
 
-            ApplicationUser userAdmin = _db.ApplicationUsers.Where(x => x.Email == "admin@gmail.com").FirstOrDefault();
-            ApplicationUser userManager = _db.ApplicationUsers.Where(x => x.Email == "manager@gmail.com").FirstOrDefault();
-            ApplicationUser userOwner = _db.ApplicationUsers.Where(x => x.Email == "owner@gmail.com").FirstOrDefault();
-            ApplicationUser userEmployee = _db.ApplicationUsers.Where(x => x.Email == "employee@gmail.com").FirstOrDefault();
+            ApplicationUser userAdmin = _db.ApplicationUsers.Where(x => x.Email == "admin@test.com").FirstOrDefault();
+            ApplicationUser userManager = _db.ApplicationUsers.Where(x => x.Email == "manager@test.com").FirstOrDefault();
+            ApplicationUser userOwner = _db.ApplicationUsers.Where(x => x.Email == "owner@test.com").FirstOrDefault();
+            ApplicationUser userEmployee = _db.ApplicationUsers.Where(x => x.Email == "employee@test.com").FirstOrDefault();
 
             _userManager.AddToRoleAsync(userAdmin, SD.Role_Admin).GetAwaiter().GetResult();
             _userManager.AddToRoleAsync(userManager, SD.Role_Manager).GetAwaiter().GetResult();

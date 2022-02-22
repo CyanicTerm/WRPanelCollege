@@ -1,99 +1,16 @@
-﻿@*@{
+﻿@{
         ViewData["Title"] = "Strona Główna";
     }
 
     <div class="text-center">
         <h1 class="display-5" style="margin-top:50px;">Witaj w aplikacji</h1>
         <p>Aplikacja napisana jako moduł obsługi przechowalni zakładu wulkanizacyjnego.<br />Będzie to część aplikacji CRM.</p>
-    </div>*@
-
-<link rel="stylesheet" href="~/css/carousel.css" />
-<main style="margin-top:50px">
-
-    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777" /></svg>
-                <img src="~/img/clients.jpg" alt="Klienci" />
-
-                <div class="container">
-                    <div class="carousel-caption text-end">
-                        <h1>Klienci</h1>
-                        <p>Dodaj nowego klienta do bazy danych</p>
-                        <p><a class="btn btn-outline-primary" asp-controller="Client" asp-action="Index">Zobacz</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777" /></svg>
-                <img src="~/img/storage.jpg" alt="Przechowalnia" />
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Przechowalnia</h1>
-                        <p>Dodaj przechowalnię do listy</p>
-                        <p><a class="btn btn-outline-primary" asp-controller="Storage" asp-action="Index">Wejdź</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777" /></svg>
-                <img src="~/img/todo.jpg" alt="Do Zrobienia" />
-
-                <div class="container">
-                    <div class="carousel-caption text-start">
-                        <h1>Do zrobienia</h1>
-                        <p>Dodaj zadanie do wykonania</p>
-                        <p><a class="btn btn-outline-primary" asp-controller="ToDo" asp-action="Index">Przejdź</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Poprzednie</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Następne</span>
-        </button>
+    <div>Do aplikacji można zalogować się jako jedna z 4 osób. Każda z nich ma przyznane odpowiednie uprawnienia.</div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Admin <br /> admin@test.com</li>
+        <li class="list-group-item">Manager <br /> manager@test.com</li>
+        <li class="list-group-item">Owner <br /> owner@test.com</li>
+        <li class="list-group-item">Employee <br /> employee@test.com</li>
+    </ul>
+    <h1 style="margin-top:100px">Hasło do kont to Admin123*</h1>
     </div>
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="bd-placeholder-img rounded-circle"><a href="https://gmail.google.com"><i class="bi bi-envelope"></i></a></div>
-                
-
-                <h2>Heading</h2>
-                <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-                <h2>Heading</h2>
-                <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-                <h2>Heading</h2>
-                <p>And lastly this, the third column of representative placeholder content.</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</main>

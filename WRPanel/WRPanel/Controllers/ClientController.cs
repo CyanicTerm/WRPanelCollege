@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using WRPanel.Models;
 using WRPanel.Repository.IRepository;
+using WRPanel.Utility;
 
 namespace WRPanel.Controllers
 {
+    [Authorize]
     public class ClientController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -43,6 +46,7 @@ namespace WRPanel.Controllers
         }
 
         //Edit - GET
+        [Authorize(Roles =SD.Role_Admin + "," + SD.Role_Owner + "," + SD.Role_Manager)]
         public IActionResult Edit(int? id)
         {
             var clientFromDb = _unitOfWork.Client.GetFirstOrDefault(c => c.Id == id);
@@ -57,6 +61,7 @@ namespace WRPanel.Controllers
         //Edit - POST
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Owner + "," + SD.Role_Manager)]
         public IActionResult Edit(Client obj)
         {
             if (ModelState.IsValid)
@@ -71,6 +76,7 @@ namespace WRPanel.Controllers
         }
 
         //Delete - GET
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Owner)]
         public IActionResult Delete(int? id)
         {
             var clientFromDb = _unitOfWork.Client.GetFirstOrDefault(c => c.Id == id);
@@ -85,6 +91,7 @@ namespace WRPanel.Controllers
         //Delete - POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Owner)]
         public IActionResult DeletePOST(int? id)
         {
             var obj = _unitOfWork.Client.GetFirstOrDefault(c => c.Id == id);
