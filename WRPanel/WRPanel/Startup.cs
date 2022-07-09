@@ -64,7 +64,7 @@ namespace WRPanel
             //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             //{
             //    var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            //    context.Database.Migrate();
+            //    context.Database.EnsureCreated();
             //}
 
             app.UseHttpsRedirection();
