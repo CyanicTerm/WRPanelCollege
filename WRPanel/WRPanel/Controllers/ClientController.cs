@@ -105,5 +105,37 @@ namespace WRPanel.Controllers
 
             return RedirectToAction("Index");
         }
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var clientList = _unitOfWork.Client.GetAll();
+            return Json(clientList);
+        }
+
+        [HttpPost]
+        public IActionResult InsertClient(Client obj)
+        {
+            _unitOfWork.Client.Add(obj);
+            _unitOfWork.Save();
+            return Json(obj);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateClient(Client obj)
+        {
+            _unitOfWork.Client.Update(obj);
+            _unitOfWork.Save();
+            return Json(obj);
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteClient(Client obj)
+        {
+            _unitOfWork.Client.Remove(obj);
+            _unitOfWork.Save();
+            return Json(obj);
+        }
+        #endregion
     }
 }

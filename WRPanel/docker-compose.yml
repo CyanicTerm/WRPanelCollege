@@ -1,0 +1,42 @@
+version: '3.4'
+
+services:
+  wrpanel:
+    image: ${DOCKER_REGISTRY-}wrpanel
+    container_name: wrpanel
+    build:
+      context: .
+      dockerfile: WRPanel/Dockerfile    
+    depends_on:
+      - mssql
+    networks:
+      wrpanel_bridge:
+        ipv4_address: 172.12.0.2
+
+  mssql:
+     image: mcr.microsoft.com/mssql/server:2019-latest
+     container_name: wrpanel_db
+     expose:
+        - 1433/tcp
+     volumes:
+        - ./db:/var/lib/mssqlql/data
+     environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=Zaq12wsX
+     restart: always
+     networks:
+      wrpanel_bridge:
+        ipv4_address: 172.12.0.3
+
+
+
+
+
+networks:
+
+  wrpanel_bridge:
+    driver: bridge
+    ipam:
+      config:
+       - subnet: 172.12.0.0/16
+         gateway: 172.12.0.1

@@ -101,5 +101,38 @@ namespace WRPanel.Controllers
 
             return RedirectToAction("Index");
         }
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var toDoList = _unitOfWork.ToDo.GetAll();
+            return Json(toDoList);
+        }
+
+        [HttpPost]
+        public IActionResult InsertClient(ToDo obj)
+        {
+            _unitOfWork.ToDo.Add(obj);
+            _unitOfWork.Save();
+            return Json(obj);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateClient(ToDo obj)
+        {
+            _unitOfWork.ToDo.Update(obj);
+            _unitOfWork.Save();
+            return Json(obj);
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteClient(ToDo obj)
+        {
+            _unitOfWork.ToDo.Remove(obj);
+            _unitOfWork.Save();
+            return Json(obj);
+        }
+        #endregion
     }
 }
