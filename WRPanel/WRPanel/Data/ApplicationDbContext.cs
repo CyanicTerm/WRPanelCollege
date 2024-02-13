@@ -15,5 +15,6 @@ namespace WRPanel.Data
         public DbSet<Storage> Storages { get; set; }
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Event> Events { get; set; }
     }
 }

@@ -1,0 +1,134 @@
+﻿@model IEnumerable<WRPanel.Models.Event>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var events = (IEnumerable<WRPanel.Models.Event>)ViewData["events"];
+    var test = 1;
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Kalendarz</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Event" asp-action="Create" class="btn btn-outline-primary">
+                Dodaj nowe wydarzenie
+            </a>
+        </div>
+    </div>
+</div>
+<div id="calendar"></div>
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print"/>
+
+<div id="myModal" class="modal fade" role="dialog" style="display=bloc">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><span id="eventTitle"></span></h4>
+            </div>
+            <div class="modal-body">
+                <p id="pDetails"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Zamknij</button>
+                <p type="button" id="btnDel" class="btn btn-default" data-bs-dismiss="modal"></p>
+                <p type="button" id="btnEdit" class="btn btn-danger" data-bs-dismiss="modal"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <script src="/js/moment.js"></script>
+    <script>
+        $(document).ready(function () {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                url: "/Event/GetEvents",
+                success: function (data) {
+                    $.each(data, function (i, v) {                        
+                        
+                        events.push({
+                            title: v.subject,
+                            description: v.description,
+                            start: v.start,
+                            end: v.end
+                        });
+                        console.log(events);
+                    })
+
+                    GenerateCalendar(events);
+                },
+                error: function(error) {
+                    alert('failed');
+                }
+            })
+        })
+
+        var Calendar = $('#calendar').fullCalendar;
+        
+
+        
+      function GenerateCalendar(events) {          
+          $('#calendar').fullCalendar('destroy');
+          $('#calendar').fullCalendar({
+              contentHight: 400,
+              locale:'pl',
+              eventClick: function (calEvent, jsEvent, view) {     
+                  console.log(calEvent);
+                  console.log(jsEvent);
+                  console.log(view);
+                  console.log(calEvent.id);
+                  $('#myModal').modal('show');
+                    $('#myModal #eventTitle').text(calEvent.title);
+                    var $description = $('<div/>');
+                    $description.append($('<p/>').html('<b>Start: </b>' + calEvent.start.format("DD-MM-YYYY HH:mm:ss")));
+                    if (calEvent.end != null) {
+                        $description.append($('<p/>').html('<b>Koniec: </b>' + calEvent.end.format("DD-MM-YYYY HH:mm:ss")));
+                    }
+                    $description.append($('<p/>').html('<b>Opis: </b>' + calEvent.description));
+                    $('#myModal #pDetails').empty().html($description);
+                    var $delbutton = $('<a asp-controller="Event" asp-action="Delete" asp-route-id="' + calEvent.id + '" class="btn btn-danger mx-2">Usuń</a>');
+                    $('#myModal #btnEdit').empty().html($delbutton);
+                    $('#myModal #pDetails').empty().html($description);
+                    $('#myModal #del').click(function () {
+                        debugger
+                        $.ajax({
+                            type:"DELETE",
+                            url:"/Event/DeleteEvent/" + calEvent.id,
+                            success: function(){
+                                console.log("deleted");
+                            }
+                        })
+                    })
+ 
+                    $('#myModal').modal();
+                },
+              defaultDate: new Date(),
+              timeFormat: 'h(:mm)a',
+              header: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'month,basicWeek,basicDay,agenda'
+              },
+              locale: 'es',
+              eventLimit: true,
+              events: events,
+              
+          });
+
+          
+
+
+
+      }
+
+    </script>
+}

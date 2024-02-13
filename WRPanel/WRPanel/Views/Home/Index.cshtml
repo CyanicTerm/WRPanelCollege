@@ -1,16 +1,48 @@
-﻿@{
-        ViewData["Title"] = "Strona Główna";
-    }
+﻿@model IEnumerable<ToDo>
 
-    <div class="text-center">
-        <h1 class="display-5" style="margin-top:50px;">Witaj w aplikacji</h1>
-        <p>Aplikacja napisana jako moduł obsługi przechowalni zakładu wulkanizacyjnego.<br />Będzie to część aplikacji CRM.</p>
-    <div>Do aplikacji można zalogować się jako jedna z 4 osób. Każda z nich ma przyznane odpowiednie uprawnienia.</div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Admin <br /> admin@test.com</li>
-        <li class="list-group-item">Manager <br /> manager@test.com</li>
-        <li class="list-group-item">Owner <br /> owner@test.com</li>
-        <li class="list-group-item">Employee <br /> employee@test.com</li>
-    </ul>
-    <h1 style="margin-top:100px">Hasło do kont to Admin123*</h1>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Do zrobienia</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="ToDo" asp-action="Create" class="btn btn-outline-primary">
+                Dodaj zadanie
+            </a>
+        </div>
     </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Zadanie</th>
+      <th scope="col">Czy jest ważne?</th>
+      <th scope="col">Opis</th>
+      <th scope="col">Ukończone?</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach(var obj in Model)
+      {
+            <tr>
+            <td>@obj.TaskName</td>
+            <td>@(obj.IsImportant?"Tak":"Nie")</td>
+            <td>@obj.Description</td>
+            <td>@(obj.IsDone?"Tak":"Nie")</td>
+            <td>
+                <div class="w-75 btn-group" role="group">
+                        <a asp-controller="ToDo" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">Edytuj</a>
+                        <a asp-controller="ToDo" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">Usuń</a>
+                </div>
+            </td>
+        </tr> 
+      }
+  </tbody>
+</table>

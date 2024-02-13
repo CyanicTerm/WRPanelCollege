@@ -17,6 +17,7 @@ namespace WRPanel.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [Route("/")]
         public IActionResult Index()
         {
             IEnumerable<ToDo> clients = _unitOfWork.ToDo.GetAll();
